@@ -5,7 +5,7 @@ const Palents=(props)=> {
     const [plantes, setplantes] = useState([]);
  
     useEffect(() => {
-        axios.get('https://swapi.dev/api/plantes/'+props.id)
+        axios.get('https://swapi.dev/api/planets/'+props.id)
             .then(response => setplantes(response.data))
     }, [props.id]);
     return (

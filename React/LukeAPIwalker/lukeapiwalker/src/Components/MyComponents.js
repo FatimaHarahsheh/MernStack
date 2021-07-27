@@ -2,18 +2,18 @@ import React,{useState} from 'react' ;
 import { navigate } from '@reach/router';
 // import Button from '@material-ui/core/Button';
 const MyComponents=(props)=> {
-    const [choice, setchoice] = useState("");
-    const [idi, setidi] = useState();
+    const [choice, setchoice] = useState("people");
+    const [id, setid] = useState(3);
 
     const changer=(event)=>{
         setchoice(event.target.value);
     }
     const changerid=(event)=>{
-        setidi(event.target.value);
+        setid(event.target.value);
     }
     const tosendda=(event)=>{
         event.preventDefault();
-        navigate('/' + choice + '/' + idi)
+        navigate('/' + choice + '/' + id)
     }
     return (
         <div>
