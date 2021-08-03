@@ -9,14 +9,13 @@ module.exports.createNewProduct = (req, res) => {
 
 module.exports.getAllProduct = (req, res) => {
   Product.find()
-    .then(displayProduct => res.json({ Product: displayProduct }))
+    .then(displayProduct => res.json( displayProduct))
     .catch(err => res.status(400).json({ message: "Something went wrong", error: err }));
 };
 
-
 module.exports.getSpecificProduct = (req, res) => {
-  Product.findOne({_id:request.params.id})
-    .then(specificProduct => res.json({ Product: specificProduct }))
+  Product.findOne({_id:req.params.id})
+    .then(specificProduct => res.json(specificProduct ))
     .catch(err => res.status(400).json({ message: "Something went wrong", error: err }));
 };
 
