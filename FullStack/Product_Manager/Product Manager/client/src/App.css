@@ -1,0 +1,13 @@
+.flexBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.box {
+  border: 2px solid black;
+  border-radius: 10px;
+  min-height: 100px;
+  min-width: 250px;
+  padding: 10px;
+}
