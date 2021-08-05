@@ -2,11 +2,12 @@ import React, { useState } from  'react';
 import axios from 'axios';
 
 export const ProductForm = (props) => {
-    const [title, setTitle] = useState("");
+    const {initialtitle, initialprice, initialdesc, onSubmitProp} = props;
+    const [title, setTitle] = useState(initialtitle);
     const [titleErr, setTitleErr] = useState("");
-    const [price, setPrice] = useState("");
+    const [price, setPrice] = useState(initialprice);
     const [priceErr, setPriceErr] = useState("");
-    const [desc, setDesc] = useState("");
+    const [desc, setDesc] = useState(initialdesc);
     const [descErr, setDescErr] = useState("");
     const [submitErr, setSubmitErr] = useState("");
     
@@ -31,24 +32,25 @@ export const ProductForm = (props) => {
     
     const createProduct = (e) => {
         e.preventDefault();
-        if(validateTitle(title) && validatePrice(price) && validateDesc(desc)){
-            const newProduct = {title: title,desc:desc, price: price};
-            axios.post('http://localhost:8000/api/products/new', newProduct)
-            .then(res=> {
-                setTitle("");
-                setDesc("");
-                setPrice("");
-                setSubmitErr("");
-            })
-            .catch(err => {
-                const errStr =  err.response.data.error.errors.title.message + ", " 
-                + err.response.data.error.errors.price.message + ", " 
-                + err.response.data.error.errors.desc.message;
-                setSubmitErr(errStr);
-            })
-        } else {
-            setSubmitErr(submitErrMesgs.noSubmit);
-        }
+        // if(validateTitle(title) && validatePrice(price) && validateDesc(desc)){
+        //     const newProduct = {title: title,desc:desc, price: price};
+        //     axios.post('http://localhost:8000/api/products/new', newProduct)
+        //     .then(res=> {
+        //         setTitle("");
+        //         setDesc("");
+        //         setPrice("");
+        //         setSubmitErr("");
+        //     })
+        //     .catch(err => {
+        //         const errStr =  err.response.data.error.errors.title.message + ", " 
+        //         + err.response.data.error.errors.price.message + ", " 
+        //         + err.response.data.error.errors.desc.message;
+        //         setSubmitErr(errStr);
+        //     })
+        // } else {
+        //     setSubmitErr(submitErrMesgs.noSubmit);
+        // }
+        onSubmitProp({title,price,desc})
     };
 
     const validateTitle = (value) => {

@@ -19,15 +19,20 @@ module.exports.getSpecificProduct = (req, res) => {
     .catch(err => res.status(400).json({ message: "Something went wrong", error: err }));
 };
 
-module.exports.updateProduct = (req, res) => {
-  Product.findOneAndUpdate({_id:request.params.id},req.body,{new:true})
-    .then(changeProduct => res.json({ Product: changeProduct }))
-    .catch(err => res.status(400).json({ message: "Something went wrong", error: err }));
-};
+// module.exports.updateProduct = (req, res) => {
+//   Product.findOneAndUpdate({_id:request.params.id},req.body)
+//     .then(changeProduct => res.json({ Product: changeProduct }))
+//     .catch(err => res.status(400).json({ message: "Something went wrong", error: err }));
+// };
 
+module.exports.updateProduct=(request,response) =>{
+  Product.findOneAndUpdate({ _id: request.params.id }, request.body, { new: true })
+  .then(updateproduct =>response.json(updateproduct))
+  .catch(err => response.json({ message: "Something went wrong", error: err}))
+}
 
-module.exports.deleteProduct = (req, res) => {
-  Product.deleteOne({_id:request.params.id})
-    .then(destroyProduct => res.json({ Product: destroyProduct }))
-    .catch(err => res.status(400).json({ message: "Something went wrong", error: err }));
+module.exports.deleteproduct = (request,response) =>{
+  Product.deleteOne({ _id: request.params.id })
+  .then(destroy => response.json(destroy))
+  .catch(err => response.json({ message: "Something went wrong", error: err}))
 };
